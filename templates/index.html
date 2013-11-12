@@ -7,12 +7,11 @@
   <meta name="author" content="">
   <link rel="shortcut icon" href="images/favicon.png">
 
-  <title>MooData</title>
+  <title>MooData - Milk Lab</title>
 
   <link href="{{url_for('static', filename='css/bootstrap.css')}}" rel="stylesheet">
   <link href="{{url_for('static', filename='css/moodata.css')}}" rel="stylesheet">
   <link href='//fonts.googleapis.com/css?family=Raleway:400,300' rel='stylesheet' type='text/css'>
-
 
   <!-- Custom styles for this template -->
   <!-- <link href="{{url_for('static', filename='css/signin.css')}}" rel="stylesheet">
@@ -23,64 +22,15 @@
   <script src="js/html5shiv.js"></script>
   <script src="js/respond.min.js"></script>
   <![endif]-->
+
+  {% block styles %}{% endblock %}
 </head>
 
 <body>
 
-  <!-- Wrap all page content here -->
-  <div id="wrap">
-    <div class="full-width-image-1"></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4 col-md-offset-4 text-center" id="title">
-          <h1>MooData</h1>
-          <img class="img-responsive" src="{{url_for('static', filename='images/cow.png')}}"></div>
-      </div>
-      {% with messages = get_flashed_messages() %}
-        {% if messages %}
-      <div class="row">
-        <div class="col-md-4 col-md-offset-4 text-center">
-          {% for message in messages %}
-          <p class="text-danger">{{ message }}</li>
-          {% endfor %}
-        </div>
-      </div>
-      {% endif %}
-      {% endwith %}
-    <div class="row">
-      <div class="col-md-4 col-md-offset-4">
-        {% if 'username' not in session %}
-        <form class="form-signin" action="/login" method="POST" autocomplete=on>
-          <h2 class="form-signin-heading">Please sign in</h2>
-          <div class="form-group">
-            <input type="email" name="username" class="form-control" placeholder="Email address" autofocus></div>
-          <div class="form-group">
-            <input type="password" name="pw" class="form-control" placeholder="Password"></div>
-          <label class="checkbox">
-            <input type="checkbox" value="remember-me">Remember me</label>
-          <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        </form>
-        {%else%}
-        <div id="hello-text" class="well text-center">
-          <h3>Howdy, {{session["username"]}}!</h3>
-          <a href="/logout">
-            <button class="btn btn-primary btn-sm">Logout</button>
-          </a>
-        </div>
-        {%endif%}
-      </div>
-    </div>
-  </div>
+  {% block body %}{% endblock %}
 
-</div>
-
-<div id="footer">
-  <div class="container">
-    <p class="text-muted credit">&#169 Digital Market Square</p>
-  </div>
-</div>
-
-<script src="{{url_for('static', filename='js/jquery.js')}}"></script>
-<script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+  <script src="{{url_for('static', filename='js/jquery.js')}}"></script>
+  <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
 </body>
 </html>

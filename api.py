@@ -10,7 +10,31 @@ app.secret_key = '5U\x9fa\xbb0w\xe3^*\xb2_\x02\x82H\rY\xcb\xc6\xa8.\xe7\xaa\xd8\
 
 @app.route("/")
 def index():
-    return render_template('index.html')
+    return render_template('milklab-signin.html')
+
+
+@app.route('/lab-dashboard')
+def lab_dashboard():
+    return render_template('dashboard.html')
+
+
+@app.route('/lab_login', methods=['GET', 'POST'])
+def lab_login():
+    if request.method == 'POST':
+        
+        print request.form
+        print session
+
+        if all(x in request.form for x in ('username','pw')): 
+            
+            session['username'] = request.form['username']
+            return redirect(url_for('index'))
+        else:
+            flash('something went wrong with your submission')
+            return redirect(url_for('index'))
+    elif request.method == 'GET':
+        return redirect(url_for('dashboard'))
+
 
 
 @app.route('/login', methods=['GET', 'POST'])

@@ -11,7 +11,9 @@ app.secret_key = '5U\x9fa\xbb0w\xe3^*\xb2_\x02\x82H\rY\xcb\xc6\xa8.\xe7\xaa\xd8\
 
 if os.environ['MONGOHQ_URL']:
     try:
+        print "Attempting MongoDB connection"
         db = pymongo.MongoClient(os.environ['MONGOHQ_URL']).get_default_database()
+        print db, "success?"
     except:
         db = None
 

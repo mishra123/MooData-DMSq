@@ -1,6 +1,6 @@
 
 
-from flask import Flask, render_template, request, redirect, flash, session, url_for, jsonify
+from flask import Flask, render_template, request, redirect, flash, session, url_for, jsonify, make_response
 import os 
 import json
 from bson.json_util import dumps
@@ -30,7 +30,12 @@ def lab_dashboard():
 @app.route("/milkdata", methods=['GET'])
 def milkdata_dump():
     if request.method == 'GET':
-        return dumps(mongo.db.milkdata.find())
+        
+        res = make_response(dumps(mongo.db.milkdata.find()))
+
+        res.headers['Access-Control-Allow-Origin'] = '*'
+
+        return res
 
 
 @app.route('/lab_login', methods=['GET', 'POST'])

@@ -2,6 +2,8 @@
 
 from flask import Flask, render_template, request, redirect, flash, session, url_for, jsonify
 import os 
+import json
+from bson.json_util import dumps
 from flask.ext.pymongo import PyMongo
 
 app = Flask(__name__)
@@ -12,7 +14,7 @@ app.secret_key = '5U\x9fa\xbb0w\xe3^*\xb2_\x02\x82H\rY\xcb\xc6\xa8.\xe7\xaa\xd8\
 
 if 'MONGOHQ_URL' in os.environ:
     app.config['MONGO_URI'] = os.environ['MONGOHQ_URL']
-    db = PyMongo(app)
+    mongo = PyMongo(app)
 
 
 @app.route("/")
@@ -28,7 +30,7 @@ def lab_dashboard():
 @app.route("/milkdata", methods=['GET'])
 def milkdata_dump():
     if request.method == 'GET':
-        return jsonify(mongo.db.milkdata.find())
+        return dumps(mongo.db.milkdata.find())
 
 
 @app.route('/lab_login', methods=['GET', 'POST'])

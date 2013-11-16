@@ -1,11 +1,19 @@
 
 
-from flask import Flask, render_template, request, redirect, flash, session, url_for
+from flask import Flask, render_template, request, redirect, flash, session, url_for, jsonify
+import os 
+import pymongo
 
 app = Flask(__name__)
 
 app.secret_key = '5U\x9fa\xbb0w\xe3^*\xb2_\x02\x82H\rY\xcb\xc6\xa8.\xe7\xaa\xd8\x8f\xe4\xb70l0(\x12\xe259P\xef\xeb\xb7v\xecH\x08m,\x81\xd4\xf4'
 
+
+if os.environ['MONGOHQ_URL']:
+    try:
+        db = pymongo.MongoClient(os.environ['MONGOHQ_URL']).get_default_database()
+    except:
+        db = None
 
 
 @app.route("/")
@@ -16,6 +24,13 @@ def index():
 @app.route('/lab-dashboard')
 def lab_dashboard():
     return render_template('dashboard.html')
+
+
+@app.route("/milkdata", methods=['GET'])
+def milkdata_dump():
+    if request.method == 'GET':
+        if db:
+            return jsonify(db.milkdata.find())
 
 
 @app.route('/lab_login', methods=['GET', 'POST'])

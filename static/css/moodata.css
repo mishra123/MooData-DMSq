@@ -1,25 +1,14 @@
-#title > img{
-	display:inline-block;
-	width:100px;
+h1 {
+
+	font-size:24px;
+
 }
 
-#title > h1{
-	font-family:'Raleway', cursive;
-	color:white;
-	font-weight:300;
-	font-size:5em;
-}
-
-
-#hello-text {
-	color:gunsmoke;
-	font-size:3em
+h2 {
+	font-size: 20px;
 }
 
 
-body {
-	background: url("/static/images/fields.jpg") no-repeat center center scroll;
-	background-size: cover;
-	text-align: center;
-	padding: 100px 0;
+#report-table th{
+	font-size:10px;
 }

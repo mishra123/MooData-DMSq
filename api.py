@@ -62,18 +62,16 @@ def login():
 
         print request.form
         print session
+        print request.data
 
-        if all(x in request.form for x in ('username','pw')): 
+        if all(x in request.data for x in ('user','pw')): 
             
             session['username'] = request.form['username']
             res = redirect('/dashboard')
             res.headers['Access-Control-Allow-Origin'] = '*'
             return res
 
-        else:
-
-            flash('something went wrong with your submission')
-            return redirect(url_for('index'))
+        
 
 @app.route('/logout')
 def logout():
@@ -84,6 +82,4 @@ def logout():
 
 if __name__ == "__main__":
     
-    
-
     app.run(debug=True)

@@ -57,9 +57,9 @@ def lab_login():
 
 
 
-@app.route('/app_login', methods=['POST'])
+@app.route('/app_login', methods=['POST', 'OPTIONS'])
 def login():
-
+        print request
         print request.form
         print session
         print request.data

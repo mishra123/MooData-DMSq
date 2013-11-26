@@ -58,14 +58,10 @@ def lab_login():
 
 
 @app.route('/app_login', methods=['POST', 'OPTIONS'])
-def login():
-        
-        if 'user' in request.data and 'pw' in request.data : 
-            print "TEST"
-            session['username'] = request.data['user']
-            res = redirect('/dashboard')
-            res.headers['Access-Control-Allow-Origin'] = '*'
-            return res
+def login():   
+    res = redirect('/dashboard')
+    res.headers['Access-Control-Allow-Origin'] = '*'
+    return res
 
         
 

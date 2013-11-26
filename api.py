@@ -58,8 +58,11 @@ def lab_login():
 
 
 @app.route('/app_login', methods=['POST', 'OPTIONS'])
-def login():   
-    res = make_response(dumps({ 'user':'Farmer Daniel', 'farmer_id':1 }))
+def login():
+
+    print request
+
+    res = make_response(dumps({ 'user':'Daniel', 'farmer_id':1 }))
     res.headers['Access-Control-Allow-Origin'] = '*'
     res.headers['Content-Type'] = 'application/json'
     return res

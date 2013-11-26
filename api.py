@@ -26,6 +26,10 @@ def index():
 def lab_dashboard():
     return render_template('dashboard.html')
 
+@app.route('/lab-archive')
+def lab_archive():
+    return render_template('archive.html')
+
 
 @app.route("/milkdata", methods=['GET'])
 def milkdata_dump():

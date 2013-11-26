@@ -64,7 +64,7 @@ def login():
         print session
         print request.data
 
-        if all(x in request.data for x in ('user','pw')): 
+        if 'user' in request.data and 'pw' in request.data : 
             
             session['username'] = request.form['username']
             res = redirect('/dashboard')

@@ -59,7 +59,7 @@ def lab_login():
 
 @app.route('/app_login', methods=['POST', 'OPTIONS'])
 def login():   
-    res = redirect('/dashboard')
+    res = jsonify({ 'user':'Farmer Daniel', 'farmer_id':1 })
     res.headers['Access-Control-Allow-Origin'] = '*'
     return res
 

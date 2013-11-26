@@ -66,7 +66,7 @@ def login():
 
         if 'user' in request.data and 'pw' in request.data : 
             
-            session['username'] = request.form['username']
+            session['username'] = request.data['user']
             res = redirect('/dashboard')
             res.headers['Access-Control-Allow-Origin'] = '*'
             return res

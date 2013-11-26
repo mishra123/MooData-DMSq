@@ -61,8 +61,10 @@ def lab_login():
 def login():
         print request
         print request.form
-        print session
         print request.data
+        print request.data.keys()
+
+        print session
 
         if 'user' in request.data and 'pw' in request.data : 
             

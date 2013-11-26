@@ -57,23 +57,23 @@ def lab_login():
 
 
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/app_login', methods=['POST'])
 def login():
-    if request.method == 'POST':
-        
+
         print request.form
         print session
 
         if all(x in request.form for x in ('username','pw')): 
             
             session['username'] = request.form['username']
-            return redirect(url_for('index'))
+            res = redirect('/dashboard')
+            res.headers['Access-Control-Allow-Origin'] = '*'
+            return res
+
         else:
+
             flash('something went wrong with your submission')
             return redirect(url_for('index'))
-
-    elif request.method == 'GET':
-        return redirect(url_for('index'))
 
 @app.route('/logout')
 def logout():

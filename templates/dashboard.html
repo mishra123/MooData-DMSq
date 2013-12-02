@@ -71,15 +71,44 @@
 			<div class="col-lg-6">
 
 				<h2>Input New Data</h2>
-
-				<div class="form-group">
-					<label for="date_received">Date Received</label>
-					<input type="date" class="form-control" id="date_received" placeholder=""></div>
-				<div class="form-group">
-					<label for="test_date">Test Date</label>
-					<input type="date" class="form-control" id="test_date" placeholder=""></div>
-				<div class="form-group">
-					
+					<form name ="MooLab" role="form">
+						<div class="form-group">
+						<label for="exampleInputEmail1">Test Date</label>
+					<input type="text" class="form-control" id="test_date" name= "test_date">
+						</div>
+						
+					<div class="form-group">
+						<label for="DateReceived">Received Date</label>
+							<input type="date" class="form-control" id="date_received" placeholder="">
+					</div>
+					<div class="form-group">
+					<label for="farmer_id">Farmer's ID</label>
+					<input type="number" class="form-control" id="f_id" placeholder="Enter ID">
+						</div>
+						<div class="form-group">
+					<label for="volume">Volume</label>
+					<input type="number" class="form-control" id="vol" placeholder="Enter Volume">
+						</div>
+						<div class="form-group">
+					<label for="milkfat">Milk Fat</label>
+					<input type="number" class="form-control" id="milkfat" placeholder="Enter Milkfate">
+						</div>
+						<div class="form-group">
+					<label for="protein">True Protein</label>
+					<input type="number" class="form-control" id="protein" placeholder="Enter Protein">
+						</div>
+						<div class="form-group">
+					<label for="platecount">Total Plate Count</label>
+					<input type="number" class="form-control" id="platecount" placeholder="Enter Plate Count">
+						</div>
+						<div class="form-group">
+					<label for="temp">Temperature</label>
+					<input type="number" class="form-control" id="temp" placeholder="Enter Temperature">
+						</div>
+						<div class="form-group">
+					<label for="bmcc">BMCC</label>
+					<input type="number" class="form-control" id="bmcc" placeholder="Enter BMCC">
+						</div>
 					
 				</div>
 				
@@ -89,6 +118,27 @@
 
 			</div>
 		</div>
+		<script>
+var mydate=new Date()
+var theyear=mydate.getYear()
+if (theyear < 1000)
+theyear+=1900
+var theday=mydate.getDay()
+var themonth=mydate.getMonth()+1
+if (themonth<10)
+themonth="0"+themonth
+var theday=mydate.getDate()
+if (theday<10)
+theday="0"+theday
+
+
+var displayfirst=themonth
+var displaysecond=theday
+var displaythird=theyear
+
+
+document.MooLab.test_date.value=displayfirst+"-"+displaysecond+"-"+displaythird
+</script>
 		<!-- /.row -->
 		<div class="row">
 

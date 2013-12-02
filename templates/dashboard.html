@@ -91,7 +91,7 @@
 						</div>
 						<div class="form-group">
 					<label for="milkfat">Milk Fat</label>
-					<input type="number" class="form-control" id="milkfat" placeholder="Enter Milkfate">
+					<input type="number" class="form-control" id="milkfat" placeholder="Enter Milk Fat">
 						</div>
 						<div class="form-group">
 					<label for="protein">True Protein</label>
@@ -109,13 +109,12 @@
 					<label for="bmcc">BMCC</label>
 					<input type="number" class="form-control" id="bmcc" placeholder="Enter BMCC">
 						</div>
-					
+					<button type="submit" class="btn btn-info">Submit</button>
+					<button type="button" class="btn btn-info" onclick="ClearContact()">Clear</button>
 				</div>
 				
-				<button type="submit" class="btn btn-info">Submit</button>
-
-				<form class="form"></form>
-
+				
+			
 			</div>
 		</div>
 		<script>
@@ -139,6 +138,19 @@ var displaythird=theyear
 
 document.MooLab.test_date.value=displayfirst+"-"+displaysecond+"-"+displaythird
 </script>
+<script type="text/javascript">
+       function ClearContact() 
+	   {
+      document.getElementById('f_id').value = '';
+	  document.getElementById('vol').value = '';
+	  document.getElementById('milkfat').value = '';
+	  document.getElementById('protein').value = '';
+	  document.getElementById('platecount').value = '';
+	  document.getElementById('temp').value = '';
+	  document.getElementById('bmcc').value = '';
+	  
+	  }
+	  </script> 
 		<!-- /.row -->
 		<div class="row">
 
@@ -207,74 +219,7 @@ document.MooLab.test_date.value=displayfirst+"-"+displaysecond+"-"+displaythird
 		</div>
 		<!-- /.row -->
 		<!-- /.row -->
-		<div class="row">
-
-			<div class="col-lg-12">
-				<h2>Archived Reports for Franco's Farm</h2>
-
-				<table id="report-table" class="table table-striped">
-					<thead>
-						<tr>
-							<th>Milking Date</th>
-							<th>Test Date</th>
-							<th>Volume</th>
-							<th>Milkfat (%m/v)</th>
-							<th>Milkfat (kg)</th>
-							<th>True Protein (%m/v)</th>
-							<th>True Protein (kg)</th>
-							<th>Total Plate Count (cfu/mL)</th>
-							<th>Temp</th>
-							<th>BMCC (x 1000/mL)</th>
-							<th>Pickup Time</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>01</td>
-							<td>04</td>
-							<td>1790</td>
-							<td>3.84</td>
-							<td>68.73</td>
-							<td>3.50</td>
-							<td>62.65</td>
-							<td>7</td>
-							<td>4.5</td>
-							<td>326</td>
-							<td>08:49</td>
-						</tr>
-						<tr class=3D"PaulsText">
-							<td "7%">02</td>
-							<td "7%">05</td>
-							<td "8%">2797</td>
-							<td "8%">4.00</td>
-							<td "8%">111.88</td>
-							<td "8%">3.53</td>
-							<td "8%">98.73</td>
-							<td "8%"></td>
-							<td "8%">4.5</td>
-							<td "8%">314</td>
-							<td "22%">10:39</td>
-						</tr>
-						<tr class=3D"PaulsText">
-							<td "7%">04</td>
-							<td "7%">06</td>
-							<td "8%">5889</td>
-							<td "8%">4.11</td>
-							<td "8%">242.03</td>
-							<td "8%">3.50</td>
-							<td "8%">206.11</td>
-							<td "8%">8</td>
-							<td "8%">4.7</td>
-							<td "8%">274</td>
-							<td "22%">14:09</td>
-						</tr>
-
-					</tbody>
-
-				</table>
-
-			</div>
-		</div>
+		
 		<!-- /.row -->
 
 	</div>

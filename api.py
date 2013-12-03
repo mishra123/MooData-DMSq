@@ -5,7 +5,7 @@ import os
 import json
 from bson.json_util import dumps
 from flask.ext.pymongo import PyMongo
-from flask.ext.cors import origin
+from flask.ext.cors import origin, headers
 
 
 app = Flask(__name__)
@@ -34,7 +34,7 @@ def lab_archive():
 
 
 @app.route("/milkdata", methods=['GET'])
-@origin('*')
+@origin('*', headers='Content-Type')
 def milkdata_dump():
     if request.method == 'GET':
         
@@ -46,6 +46,7 @@ def milkdata_dump():
 
 
 @app.route('/lab_login', methods=['GET', 'POST'])
+
 def lab_login():
     if request.method == 'POST':
         
@@ -65,7 +66,7 @@ def lab_login():
 
 
 @app.route('/app_login', methods=['POST', 'OPTIONS'])
-@origin('*')
+@origin('*', headers='Content-Type')
 def login():
 
     print request

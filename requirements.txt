@@ -1,4 +1,5 @@
 Flask==0.10.1
+Flask-Cors==1.0
 Flask-Login==0.2.7
 Flask-PyMongo==0.3.0
 Jinja2==2.7.1

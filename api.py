@@ -5,7 +5,7 @@ import os
 import json
 from bson.json_util import dumps
 from flask.ext.pymongo import PyMongo
-from flask.ext.cors import origin, headers
+from flask.ext.cors import origin
 
 
 app = Flask(__name__)

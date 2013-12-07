@@ -1,7 +1,6 @@
 h1 {
 
 	font-size:24px;
-
 }
 
 h2 {
@@ -11,4 +10,8 @@ h2 {
 
 #report-table th{
 	font-size:10px;
+}
+
+#report-table td{
+	font-size:11px;
 }

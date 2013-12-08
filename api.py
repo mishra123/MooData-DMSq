@@ -51,45 +51,52 @@ def add_lab_user():
     return redirect('/')
 
 
-@app.route('/lab-dashboard')
+@app.route('/lab-dashboard', methods=['GET', 'POST'])
 def lab_dashboard():
 
-    #Check if user is in the session by checking for this key
-    if 'email' in session:
+    if request.method == 'GET':
 
-        logged_in_user = session['email']
+        #Check if user is in the session by checking for this key
+        if 'email' in session:
 
-        user = mongo.db.lab_users.find_one({'email':logged_in_user['email']})
+            logged_in_user = session['email']
 
-        recent_thirty_reports = mongo.db.milkdata.find(\
-            {'lab_user':user['_id']})\
-            .sort('Date',-1).limit(30)
+            user = mongo.db.lab_users.find_one({'email':logged_in_user['email']})
 
-        #Convert cursor into a list
-        recent_thirty_reports = [x for x in recent_thirty_reports]    
 
-        #Get a set of all the farmer ids in recent reports so we can get farmer data
-        farmer_objectsids = {
-            ObjectId(x['farmer_user']) for x in recent_thirty_reports
-        }
 
-        #Go through each farmer_id in the set, get the userdata for that farmer and 
-        # swap out the id in 'farmer_user' with a dictionary of user data
-        for farmer_id in farmer_objectsids:
-            
-            f = mongo.db.users.find_one({"_id":farmer_id})
-            #Maybe an incorrect farmer_id?
-            if f:
-                #Go through all the reports and swap out ObjectId for actual farmer data
-                # This is basically a table join in MongoDB
-                for r in recent_thirty_reports:
-                    if r['farmer_user'] == farmer_id:
-                        r['farmer_user'] = f
+            #Section for handling the 30 most recent reports
+            recent_thirty_reports = mongo.db.milkdata.find(\
+                {'lab_user':user['_id']})\
+                .sort('Date',-1).limit(30)
 
-        return render_template('dashboard.html', 
-            user=logged_in_user, 
-            recent_thirty_reports = recent_thirty_reports
-            )    
+            #Convert cursor into a list
+            recent_thirty_reports = [x for x in recent_thirty_reports]    
+
+            #Get a set of all the farmer ids in recent reports so we can get farmer data
+            farmer_objectsids = {
+                ObjectId(x['farmer_user']) for x in recent_thirty_reports
+            }
+
+            #Go through each farmer_id in the set, get the userdata for that farmer and 
+            # swap out the id in 'farmer_user' with a dictionary of user data
+            for farmer_id in farmer_objectsids:
+                
+                f = mongo.db.users.find_one({"_id":farmer_id})
+                #Maybe an incorrect farmer_id?
+                if f:
+                    #Go through all the reports and swap out ObjectId for actual farmer data
+                    # This is basically a table join in MongoDB
+                    for r in recent_thirty_reports:
+                        if r['farmer_user'] == farmer_id:
+                            r['farmer_user'] = f
+
+            return render_template('dashboard.html', 
+                user=logged_in_user, 
+                recent_thirty_reports = recent_thirty_reports
+                )    
+        elif request.method == 'POST':
+            #CODE HERE FOR HANDLING FORM INPUT
 
     else:
         return redirect(url_for('index'))

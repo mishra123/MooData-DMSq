@@ -95,9 +95,9 @@ def lab_dashboard():
                 user=logged_in_user, 
                 recent_thirty_reports = recent_thirty_reports
                 )    
-        elif request.method == 'POST':
+    elif request.method == 'POST':
             #CODE HERE FOR HANDLING FORM INPUT
-
+        print 'POST'
     else:
         return redirect(url_for('index'))
     

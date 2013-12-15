@@ -9,6 +9,9 @@ import md5
 from bson.json_util import dumps
 from flask.ext.pymongo import PyMongo
 from flask.ext.cors import origin
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 # from flask.ext.
 
 
@@ -167,6 +170,42 @@ def logout():
     # remove the username from the session if it's there
     session.pop('username', None)
     return redirect(url_for('index'))
+
+
+
+def send_email(email, data):
+    
+    msg = MIMEMultipart('alternative')
+    msg['Subject'] = "[MooData] New Report "+data.Date
+    msg['From'] = 'dalanmiller@cmu.edu'
+    msg['To'] = email
+
+    html = """\n
+<html>
+  <head></head>
+  <body>
+    <h1>New report from MooData!</h1>
+
+    <p>Refresh the data in your app to receive your new data!</p>
+    
+  </body>
+</html>
+"""
+
+    username = os.environ['SENDGRID_USERNAME']
+    password = os.environ['SENDGRID_PASSWORD']
+
+    msg.attach(MIMEText(html, 'html'))
+
+    s = smtplib.SMTP('smtp.sendgrid.net', 587)
+
+    s.login(username, password)
+
+    s.sendmail(fromEmail, toEmail, msg.as_string())
+
+    s.quit()
+
+
 
 
 if __name__ == "__main__":
